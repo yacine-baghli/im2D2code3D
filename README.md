@@ -66,15 +66,17 @@ python evaluate_enhanced_turbo.py
 My approach was iterative. I evaluated the performance at each major step to justify the next decision. The results clearly show the impact of each enhancement.
 
 | Model Version                        | Training Data | Key Changes                             | VSR (Valid Syntax Rate) | Mean Best IoU | Analysis                                                                 |
-|-------------------------------------|---------------|------------------------------------------|--------------------------|----------------|--------------------------------------------------------------------------|
-| Baseline (GRU)                      | 5%            | –                                        | 0.0%                     | 0.00%          | Severe mode collapse.                                                    |
-| Enhanced (Transformer + Beam Search)| 5%            | Transformer Decoder + Beam Search        | 10.0%                    | 0.73%          | Varied, context-aware code. Major improvement over GRU baseline.        |
-| Final "Turbo" Model                 | 25%           | More Data + AMP + `torch.compile()`      | 70.0%                    | 19.93%         | Improved syntax and feature recognition thanks to better training setup. |
+|-------------------------------------|---------------|-------------------------------------------|--------------------------|----------------|--------------------------------------------------------------------------|
+| Baseline (GRU)                      | 5%            | –                                         | 0.0%                     | 0.00%          | Severe mode collapse.                                                    |
+| Enhanced (Transformer + Beam Search)| 5%            | Transformer Decoder + Beam Search         | 10.0%                    | 0.73%          | Varied, context-aware code. Major improvement over GRU baseline.        |
+| Final "Turbo" Model                 | 25%           | More Data + AMP + `torch.compile()`       | 70.0%                    | 19.93%         | Improved syntax and feature recognition thanks to better training setup. |
+| Final "Turbo" Model                 | 100%          | All the data set + AMP + `torch.compile()`| 70.0%                    | 30%            | Improved syntax and feature recognition thanks to better training setup. |
 
+*Edit : test of the turbo model trained on all the dataset* 
 
 The final model demonstrates a strong ability to generate syntactically valid CadQuery code. The 70% VSR proves that the combination of a Transformer architecture and a larger training dataset was effective at teaching the model the "grammar" of the CadQuery API.
 
-Furthermore, the **Mean Best IoU of ~20%** indicates that the valid code produced is not random, but generates shapes that are geometrically and topologically similar to the ground truth. A qualitative review shows the model successfully identifies the primary features of a part (e.g., whether it's fundamentally a box or a cylinder) and generates the corresponding base code, even if it sometimes simplifies or omits more complex secondary operations. This result is a powerful proof-of-concept for the image-to-code approach.
+Furthermore, the **Mean Best IoU of ~30%** indicates that the valid code produced is not random, but generates shapes that are geometrically and topologically similar to the ground truth. A qualitative review shows the model successfully identifies the primary features of a part (e.g., whether it's fundamentally a box or a cylinder) and generates the corresponding base code, even if it sometimes simplifies or omits more complex secondary operations. This result is a powerful proof-of-concept for the image-to-code approach.
 
 
 ## Bottlenecks & Limitations
