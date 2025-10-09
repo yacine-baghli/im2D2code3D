@@ -66,11 +66,11 @@ python evaluate_enhanced_turbo.py
 My approach was iterative. I evaluated the performance at each major step to justify the next decision. The results clearly show the impact of each enhancement.
 
 | Model Version                        | Training Data | Key Changes                             | VSR (Valid Syntax Rate) | Mean Best IoU | Analysis                                                                 |
-|-------------------------------------|---------------|-------------------------------------------|--------------------------|----------------|--------------------------------------------------------------------------|
-| Baseline (GRU)                      | 5%            | –                                         | 0.0%                     | 0.00%          | Severe mode collapse.                                                    |
-| Enhanced (Transformer + Beam Search)| 5%            | Transformer Decoder + Beam Search         | 10.0%                    | 0.73%          | Varied, context-aware code. Major improvement over GRU baseline.        |
-| Final "Turbo" Model                 | 25%           | More Data + AMP + `torch.compile()`       | 70.0%                    | 19.93%         | Improved syntax and feature recognition thanks to better training setup. |
-| Final "Turbo" Model                 | 100%          | All the data set + AMP + `torch.compile()`| 70.0%                    | 30%            | Improved syntax and feature recognition thanks to better training setup. |
+|-------------------------------------|---------------|---------------------------------------------------|--------------------------|----------------|--------------------------------------------------------------------------|
+| Baseline (GRU)                      | 5%            | –                                                 | 0.0%                     | 0.00%          | Severe mode collapse.                                                    |
+| Enhanced (Transformer + Beam Search)| 5%            | Transformer Decoder + Beam Search                 | 10.0%                    | 0.73%          | Varied, context-aware code. Major improvement over GRU baseline.        |
+| Final "Turbo" Model                 | 25%           | More Data + AMP + `torch.compile()`               | 70.0%                    | 19.93%         | Improved syntax and feature recognition thanks to better training setup. |
+| Final "Turbo" Model                 | 100%          | All the training data set+ AMP + `torch.compile()`| 70.0%                    | 30%            | Improved syntax and feature recognition thanks to better training setup. |
 
 *Edit : test of the turbo model trained on all the dataset* 
 
